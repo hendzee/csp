@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { 
-    SafeAreaView,
-    View, 
+    SafeAreaView, 
     Text,
     StyleSheet,
     TextInput,
@@ -39,7 +38,7 @@ class AddPage extends Component {
                 style={ pageStyle.buttonAddContainer }
             >
                 <Text style={ pageStyle.buttonText }>
-                    +
+                    SAVE
                 </Text>
             </TouchableOpacity>
         );
@@ -47,7 +46,7 @@ class AddPage extends Component {
     
     render() {
         return (
-            <View style={ pageStyle.mainContainer }>
+            <SafeAreaView style={ pageStyle.mainContainer }>
                 <TextInput 
                     value={ this.state.name }
                     placeholder='Name'
@@ -73,7 +72,7 @@ class AddPage extends Component {
                     style={ pageStyle.textInput }
                 />
                 { this.buttonAdd() }
-            </View>
+            </SafeAreaView>
         );
     }
 }
@@ -97,7 +96,6 @@ const pageStyle = StyleSheet.create({
     },
     buttonText: {
         color: '#FFF',
-        fontSize: 25,
         fontWeight: 'bold'
     }
 });

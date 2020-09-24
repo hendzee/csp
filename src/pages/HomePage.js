@@ -29,10 +29,10 @@ class HomePage extends Component {
 
     // Extract data students
     extractData = () => {
-        return this.state.dataStudents.map(item =>(
+        return this.state.dataStudents.map((item, index) =>(
 
             <TouchableOpacity 
-                onPress={ () => alert('ID: ' + 'item.id') }
+                onPress={ () => this.props.navigation.navigate('DETAIL_PAGE', { dataStudent: this.state.dataStudents[index] }) }
                 style={ pageStyle.cardContainer }
             >
                 <Text style={ pageStyle.name }>

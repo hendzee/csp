@@ -1,5 +1,5 @@
 import React from 'react';
-import { HomePage, AddPage } from './src/pages';
+import { HomePage, AddPage, DetailPage } from './src/pages';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -22,6 +22,14 @@ const StackNavigator = () => {
           headerTitle: 'Tambah Siswa' 
         }} 
         component={ AddPage } 
+      />
+
+      <Stack.Screen 
+        name='DETAIL_PAGE' 
+        options={{ 
+          headerTitle: 'Detail Siswa' 
+        }} 
+        component={ DetailPage } 
       />
     </Stack.Navigator>
   )
