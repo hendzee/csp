@@ -1,5 +1,5 @@
 const studentAction = {
-    STUDENT_ADD = 'STUDENT_UPDATE',
+    STUDENT_ADD: 'STUDENT_UPDATE',
 }
 
 export { studentAction };

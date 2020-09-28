@@ -7,6 +7,9 @@ import {
     TouchableOpacity
 } from 'react-native';
 
+import { connect } from 'react-redux'; 
+import { addStudent } from '../store/actions/student';
+
 class AddPage extends Component {
     state = { 
         id: '',
@@ -26,7 +29,8 @@ class AddPage extends Component {
             hobby: this.state.hobby
         }
 
-        this.props.route.params.handleAddStudent(newStudent),
+        this.props.onAddStudent(newStudent);
+
         this.props.navigation.goBack();
     }
 
@@ -100,4 +104,13 @@ const pageStyle = StyleSheet.create({
     }
 });
 
-export { AddPage };
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onAddStudent: (newValue) => dispatch(addStudent(newValue))
+    }
+}
+
+const AddPageWithRedux = connect(null, mapDispatchToProps)(AddPage);
+
+export { AddPageWithRedux as AddPage };

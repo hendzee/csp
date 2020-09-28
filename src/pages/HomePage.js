@@ -7,32 +7,19 @@ import {
     TouchableOpacity
 } from 'react-native';
 
+import { connect } from 'react-redux';
+
 class HomePage extends Component {
     state = { 
-        dataStudents: [
-            {
-                'id': '100001',
-                'name': 'VIRGINIA HENDRAS PRAWIRA',
-                'phone': '0850000001',
-                'address': 'Jl. Raya Malang no.10, Malang.',
-                'hobby': 'Belajar dan bermain'
-            },
-            {
-                'id': '100002',
-                'name': 'BIMO WIDODO SYAHPUTRO',
-                'phone': '0850000002',
-                'address': 'Jl. Merdeka no.11, Malang.',
-                'hobby': 'Belajar dan bermain'
-            },
-        ]
+        dataStudents: []
     }
 
     // Extract data students
     extractData = () => {
-        return this.state.dataStudents.map((item, index) =>(
+        return this.props.dataStudents.map((item, index) =>(
 
             <TouchableOpacity 
-                onPress={ () => this.props.navigation.navigate('DETAIL_PAGE', { dataStudent: this.state.dataStudents[index] }) }
+                onPress={ () => this.props.navigation.navigate('DETAIL_PAGE', { idx: index }) }
                 style={ pageStyle.cardContainer }
             >
                 <Text style={ pageStyle.name }>
@@ -43,11 +30,6 @@ class HomePage extends Component {
                 </Text>
             </TouchableOpacity>
         ));
-    }
-
-    // Handle add student
-    handleAddStudent = (newStudent) => {
-        this.setState({ dataStudents: [...this.state.dataStudents, newStudent] });
     }
 
     // Button add
@@ -107,4 +89,12 @@ const pageStyle = StyleSheet.create({
     }
 })
 
-export { HomePage };
+const mapStateToProps = (state) => {
+    return {
+        dataStudents: state.student.dataStudents
+    }
+}
+
+const HomePageRedux = connect(mapStateToProps)(HomePage);
+
+export { HomePageRedux as HomePage };

@@ -6,6 +6,8 @@ import {
     View
 } from 'react-native';
 
+import { connect } from 'react-redux';
+
 class DetailPage extends Component {
 
     render() {
@@ -14,27 +16,37 @@ class DetailPage extends Component {
                 <View style={ pageStyle.cardContainer }>
                     <View style={ pageStyle.itemContainer }>
                         <Text style={ pageStyle.boldText }>ID Student</Text>
-                        <Text>{ this.props.route.params.dataStudent.id }</Text>
+                        <Text>
+                            { this.props.dataStudents[this.props.route.params.idx].id }
+                        </Text>
                     </View>
 
                     <View style={ pageStyle.itemContainer }>
                         <Text style={ pageStyle.boldText }>Name</Text>
-                        <Text>{ this.props.route.params.dataStudent.name }</Text>
+                        <Text>
+                            { this.props.dataStudents[this.props.route.params.idx].name }
+                        </Text>
                     </View>
 
                     <View style={ pageStyle.itemContainer }>
                         <Text style={ pageStyle.boldText }>Phone</Text>
-                        <Text>{ this.props.route.params.dataStudent.phone }</Text>
+                        <Text>
+                            { this.props.dataStudents[this.props.route.params.idx].phone }
+                        </Text>
                     </View>
 
                     <View style={ pageStyle.itemContainer }>
                         <Text style={ pageStyle.boldText }>Address</Text>
-                        <Text>{ this.props.route.params.dataStudent.address }</Text>
+                        <Text>
+                            { this.props.dataStudents[this.props.route.params.idx].address }
+                        </Text>
                     </View>
 
                     <View style={ pageStyle.itemContainer }>
                         <Text style={ pageStyle.boldText }>Hobby</Text>
-                        <Text>{ this.props.route.params.dataStudent.hobby }</Text>
+                        <Text>
+                            { this.props.dataStudents[this.props.route.params.idx].hobby }
+                        </Text>
                     </View>
                 </View>
             </SafeAreaView>            
@@ -61,4 +73,12 @@ const pageStyle = StyleSheet.create({
     }
 });
 
-export { DetailPage };
+const mapStateToProps = (state) => {
+    return {
+        dataStudents: state.student.dataStudents
+    }
+}
+
+const DetailPageWithRedux = connect(mapStateToProps)(DetailPage);
+
+export { DetailPageWithRedux as DetailPage };
